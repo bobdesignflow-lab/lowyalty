@@ -4,6 +4,26 @@
       "source": "/home(?:\\.html)?",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/about(?:/index\\.html)?",
+      "destination": "/contact/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/printing-services(?:/index\\.html)?",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/printing-services-category/https-lowyalty-ke-banners-displays(?:/index\\.html)?",
+      "destination": "/printing-services-category/https-lowyalty-ke-signs-boards-branding/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/printing-services-category/https-lowyalty-ke-vehicle-fleet-branding(?:/index\\.html)?",
+      "destination": "/printing-services-category/https-lowyalty-ke-motor-vehicle-branding-office-branding/index.html",
+      "permanent": true
     }
   ]
 }
