@@ -1,0 +1,181 @@
+$ErrorActionPreference = "Stop"
+
+$baseDir = "c:\My Web Sites\Lowyalty Website"
+
+$whatsappCSS = @"
+
+        /* ==========================================================================
+           FLOATING WHATSAPP CONTACT BUTTON
+           ========================================================================== */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+            animation: whatsapp-pulse 2.5s infinite;
+        }
+
+        .whatsapp-float svg {
+            width: 34px;
+            height: 34px;
+            fill: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-float:hover,
+        .whatsapp-float:focus,
+        .whatsapp-float:active {
+            transform: scale(1.12);
+            background-color: #1ebe5d;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+            text-decoration: none !important;
+            color: #FFF !important;
+            animation: none;
+        }
+
+        .whatsapp-float:focus-visible {
+            outline: 3px solid #1575CC;
+            outline-offset: 2px;
+        }
+
+        @keyframes whatsapp-pulse {
+            0% {
+                box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.45);
+            }
+            70% {
+                box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 14px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive adjustments for tablets */
+        @media screen and (max-width: 1024px) {
+            .whatsapp-float {
+                width: 56px;
+                height: 56px;
+                bottom: 18px;
+                right: 18px;
+            }
+            .whatsapp-float svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* Responsive adjustments for mobile phones */
+        @media screen and (max-width: 600px) {
+            .whatsapp-float {
+                width: 52px;
+                height: 52px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .whatsapp-float svg {
+                width: 29px;
+                height: 29px;
+            }
+        }
+
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .whatsapp-float {
+                animation: none;
+                transition: none;
+            }
+            .whatsapp-float:hover,
+            .whatsapp-float:focus,
+            .whatsapp-float:active {
+                transform: none;
+            }
+        }
+"@
+
+$whatsappHTML = @"
+    <a href="https://wa.me/254708502332?text=Hello%20Lowyalty%20Brandingline%20Ltd.%2C%20I%20would%20like%20to%20enquire%20about%20your%20printing%2C%20branding%20and%20design%20services."
+       class="whatsapp-float"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Chat with Lowyalty Brandingline Ltd. on WhatsApp"
+       title="Chat with us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <path d="M16.003,3C8.827,3,2.991,8.833,2.991,16.008c0,2.287,0.596,4.53,1.722,6.487L3,29l6.659-1.726 c1.897,1.018,4.038,1.564,6.344,1.564c7.175,0,13.011-5.833,13.011-13.008C29.014,8.833,23.178,3,16.003,3z M23.445,20.309 c-0.331,0.927-1.936,1.785-2.71,1.894c-0.698,0.097-1.599,0.14-2.561-0.162c-0.592-0.186-1.351-0.435-2.33-0.851 c-4.097-1.754-6.777-5.824-6.97-6.087c-0.193-0.262-1.575-2.092-1.575-3.987c0-1.896,0.998-2.828,1.353-3.211 c0.355-0.383,0.774-0.48,1.032-0.48c0.258,0,0.516,0.003,0.742,0.012c0.265,0.01,0.62-0.1,0.971,0.723c0.375,0.881,1.277,3.054,1.392,3.277 c0.115,0.222,0.192,0.486,0.035,0.783c-0.157,0.297-0.248,0.485-0.493,0.742c-0.245,0.258-0.52,0.578-0.744,0.781 c-0.242,0.22-0.495,0.461-0.213,0.906c0.281,0.446,1.25,2.048,2.688,3.316c1.848,1.624,3.404,2.123,3.886,2.367 c0.482,0.245,0.763,0.208,1.049-0.126c0.285-0.333,1.221-1.42,1.55-1.905c0.328-0.485,0.657-0.404,1.104-0.245 c0.448,0.16,2.836,1.342,3.325,1.587c0.489,0.246,0.815,0.365,0.932,0.57C24.31,18.199,24.305,19.272,23.445,20.309z"/>
+        </svg>
+    </a>
+"@
+
+$htmlFiles = Get-ChildItem -Path $baseDir -Filter "*.html" -Recurse -File
+
+$processed = 0
+$skipped = 0
+$failed = 0
+$failedFiles = @()
+
+foreach ($file in $htmlFiles) {
+    try {
+        $content = Get-Content -Path $file.FullName -Raw -Encoding UTF8
+
+        if ($content -match "\.whatsapp-float") {
+            $skipped++
+            continue
+        }
+
+        $modified = $false
+
+        if ($content -match '(?is)<style\s+id="wp-custom-css">.*?</style>') {
+            $styleMatch = [regex]::Match($content, '(?is)(<style\s+id="wp-custom-css">.*?)(</style>)')
+            if ($styleMatch.Success) {
+                $newStyleBlock = $styleMatch.Groups[1].Value + $whatsappCSS + $styleMatch.Groups[2].Value
+                $content = $content.Substring(0, $styleMatch.Index) + $newStyleBlock + $content.Substring($styleMatch.Index + $styleMatch.Length)
+                $modified = $true
+            }
+        }
+
+        if ($content -match '(?i)</body>') {
+            $bodyMatch = [regex]::Match($content, '(?i)([^\r\n]*?)(</body>)')
+            if ($bodyMatch.Success) {
+                $newBodyContent = $bodyMatch.Groups[1].Value.TrimEnd() + "`r`n" + $whatsappHTML + "`r`n" + $bodyMatch.Groups[2].Value
+                $content = $content.Substring(0, $bodyMatch.Index) + $newBodyContent + $content.Substring($bodyMatch.Index + $bodyMatch.Length)
+                $modified = $true
+            }
+        }
+
+        if ($modified) {
+            Set-Content -Path $file.FullName -Value $content -Encoding UTF8 -NoNewline
+            $processed++
+            Write-Host "Updated: $($file.FullName.Replace($baseDir, '').TrimStart('\'))"
+        } else {
+            $skipped++
+        }
+    } catch {
+        $failed++
+        $failedFiles += $file.FullName
+        Write-Host "FAILED: $($file.FullName.Replace($baseDir, '').TrimStart('\')) - $_"
+    }
+}
+
+Write-Host ""
+Write-Host "================================================"
+Write-Host "Summary:"
+Write-Host "  Processed (updated): $processed"
+Write-Host "  Skipped (already has button / no markers): $skipped"
+Write-Host "  Failed: $failed"
+if ($failed -gt 0) {
+    Write-Host "  Failed files:"
+    foreach ($f in $failedFiles) { Write-Host "    - $f" }
+}
+Write-Host "================================================"
