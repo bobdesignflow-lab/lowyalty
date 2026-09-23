@@ -1,0 +1,97 @@
+$baseDir = "c:\My Web Sites\Lowyalty Website"
+
+$whatsappCSS = @"
+<style id="whatsapp-float-style">
+/* FLOATING WHATSAPP CONTACT BUTTON */
+.whatsapp-float {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease !important;
+    animation: whatsapp-pulse 2.5s infinite !important;
+}
+.whatsapp-float:hover, .whatsapp-float:focus, .whatsapp-float:active {
+    transform: scale(1.12) !important;
+    background-color: #1ebe5d !important;
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55) !important;
+    color: #FFF !important;
+    animation: none !important;
+}
+.whatsapp-float:focus-visible { outline: 3px solid #1575CC !important; outline-offset: 2px !important; }
+@keyframes whatsapp-pulse {
+    0%   { box-shadow: 0 4px 16px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.45); }
+    70%  { box-shadow: 0 4px 16px rgba(37,211,102,0.4), 0 0 0 14px rgba(37,211,102,0); }
+    100% { box-shadow: 0 4px 16px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0); }
+}
+@media screen and (max-width: 1024px) {
+    .whatsapp-float { width: 56px !important; height: 56px !important; bottom: 18px !important; right: 18px !important; }
+    .whatsapp-float svg { width: 32px !important; height: 32px !important; }
+}
+@media screen and (max-width: 600px) {
+    .whatsapp-float { width: 52px !important; height: 52px !important; bottom: 16px !important; right: 16px !important; }
+    .whatsapp-float svg { width: 29px !important; height: 29px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-float { animation: none !important; transition: none !important; }
+    .whatsapp-float:hover, .whatsapp-float:focus, .whatsapp-float:active { transform: none !important; }
+}
+</style>
+"@
+
+$whatsappHTML = '    <a href="https://wa.me/254708502332?text=Hello%20Lowyalty%20Brandingline%20Ltd.%2C%20I%20would%20like%20to%20enquire%20about%20your%20printing%2C%20branding%20and%20design%20services." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with Lowyalty Brandingline Ltd. on WhatsApp" title="Chat with us on WhatsApp" style="position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background-color: #25D366; color: #FFF; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 99999; display: flex; align-items: center; justify-content: center; text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="width: 34px; height: 34px; fill: #ffffff; flex-shrink: 0;"><path d="M16.003,3C8.827,3,2.991,8.833,2.991,16.008c0,2.287,0.596,4.53,1.722,6.487L3,29l6.659-1.726 c1.897,1.018,4.038,1.564,6.344,1.564c7.175,0,13.011-5.833,13.011-13.008C29.014,8.833,23.178,3,16.003,3z M23.445,20.309 c-0.331,0.927-1.936,1.785-2.71,1.894c-0.698,0.097-1.599,0.14-2.561-0.162c-0.592-0.186-1.351-0.435-2.33-0.851 c-4.097-1.754-6.777-5.824-6.97-6.087c-0.193-0.262-1.575-2.092-1.575-3.987c0-1.896,0.998-2.828,1.353-3.211 c0.355-0.383,0.774-0.48,1.032-0.48c0.258,0,0.516,0.003,0.742,0.012c0.265,0.01,0.62-0.1,0.971,0.723c0.375,0.881,1.277,3.054,1.392,3.277 c0.115,0.222,0.192,0.486,0.035,0.783c-0.157,0.297-0.248,0.485-0.493,0.742c-0.245,0.258-0.52,0.578-0.744,0.781 c-0.242,0.22-0.495,0.461-0.213,0.906c0.281,0.446,1.25,2.048,2.688,3.316c1.848,1.624,3.404,2.123,3.886,2.367 c0.482,0.245,0.763,0.208,1.049-0.126c0.285-0.333,1.221-1.42,1.55-1.905c0.328-0.485,0.657-0.404,1.104-0.245 c0.448,0.16,2.836,1.342,3.325,1.587c0.489,0.246,0.815,0.365,0.932,0.57C24.31,18.199,24.305,19.272,23.445,20.309z"/></svg></a>'
+
+$htmlFiles = Get-ChildItem -Path $baseDir -Filter "*.html" -Recurse -File
+
+$processed = 0
+
+foreach ($file in $htmlFiles) {
+    $content = [System.IO.File]::ReadAllText($file.FullName, [System.Text.Encoding]::UTF8)
+
+    # Clean up ANY existing whatsapp float CSS/HTML
+    # 1. Remove my previously added `<style>` block
+    $content = $content -replace '(?is)<style>\s*/\*\s*FLOATING WHATSAPP CONTACT BUTTON.*?</style>', ''
+    # 1b. Remove any `<style id="whatsapp-float-style">` block
+    $content = $content -replace '(?is)<style id="whatsapp-float-style">.*?</style>', ''
+    # 2. Remove the CSS block added inside wp-custom-css
+    $content = $content -replace '(?is)/\*\s*FLOATING WHATSAPP CONTACT BUTTON\s*\*/.*?(?=\s*</style>|\s*/\*|\z)', ''
+    # 3. Remove the HTML
+    $content = $content -replace '(?is)<a[^>]*class="whatsapp-float"[^>]*>.*?</a>', ''
+    
+    # Trim lingering empty spaces before </body> or </style> caused by regex
+    
+    # Now inject the new bullet-proof CSS and HTML
+    $cssAdded = $false
+    $htmlAdded = $false
+
+    # Insert CSS before </head>
+    $headIdx = $content.IndexOf('</head>', [System.StringComparison]::OrdinalIgnoreCase)
+    if ($headIdx -ge 0) {
+        $content = $content.Substring(0, $headIdx) + "`r`n" + $whatsappCSS + "`r`n" + $content.Substring($headIdx)
+        $cssAdded = $true
+    } else {
+        # Fallback if no </head>, insert after <head> or at beginning
+        $headStartIdx = $content.IndexOf('<head>', [System.StringComparison]::OrdinalIgnoreCase)
+        if ($headStartIdx -ge 0) {
+            $content = $content.Substring(0, $headStartIdx + 6) + "`r`n" + $whatsappCSS + "`r`n" + $content.Substring($headStartIdx + 6)
+            $cssAdded = $true
+        } else {
+            $content = $whatsappCSS + "`r`n" + $content
+            $cssAdded = $true
+        }
+    }
+
+    # Insert HTML before </body>
+    $bodyIdx = $content.IndexOf('</body>', [System.StringComparison]::OrdinalIgnoreCase)
+    if ($bodyIdx -ge 0) {
+        $content = $content.Substring(0, $bodyIdx) + "`r`n" + $whatsappHTML + "`r`n" + $content.Substring($bodyIdx)
+        $htmlAdded = $true
+    } else {
+         # Fallback: append at end
+         $content = $content + "`r`n" + $whatsappHTML
+         $htmlAdded = $true
+    }
+
+    if ($cssAdded -and $htmlAdded) {
+        [System.IO.File]::WriteAllText($file.FullName, $content, [System.Text.Encoding]::UTF8)
+        $processed++
+    }
+}
+
+Write-Host "Re-applied bulletproof WhatsApp to $processed files."
