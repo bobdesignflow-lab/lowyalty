@@ -45,20 +45,29 @@ $responsiveCSS = @"
         @media screen and (max-width: 600px) {
             .l-subheader.at_top {
                 padding: 8px 10px !important;
+                height: auto !important;
+                min-height: auto !important;
+                line-height: normal !important;
             }
             .l-subheader.at_top .l-subheader-h {
-                gap: 6px !important;
+                gap: 8px !important;
+                height: auto !important;
+                flex-direction: column !important;
+                align-items: flex-start !important;
             }
             .l-subheader.at_top .l-subheader-cell.at_left,
             .l-subheader.at_top .l-subheader-cell.at_right {
+                display: flex !important;
                 flex-direction: column !important;
                 align-items: flex-start !important;
                 gap: 4px !important;
+                width: 100% !important;
             }
             .l-subheader.at_top .w-text {
                 font-size: 10.5px !important;
                 line-height: 1.35 !important;
                 white-space: normal !important;
+                display: flex !important;
             }
             .l-subheader.at_top .w-text-value {
                 white-space: normal !important;
@@ -278,16 +287,15 @@ Get-ChildItem -Path $rootDir -Filter "*.html" -Recurse -File | ForEach-Object {
     try {
         $content = [System.IO.File]::ReadAllText($file)
         
-        # Check if already has our responsive fixes marker
-        if ($content -match 'COMPREHENSIVE MOBILE RESPONSIVE FIXES') {
-            $script:countSkipped++
-            return
+        # If the file already has the responsive fixes, we remove the entire block from '/* ==========================================================================' to '</style>' and append our new one before </style>
+        if ($content -match '(?s)/\* ==========================================================================\s*COMPREHENSIVE MOBILE RESPONSIVE FIXES.*?(</style>)') {
+            $content = [regex]::Replace($content, '(?s)/\* ==========================================================================\s*COMPREHENSIVE MOBILE RESPONSIVE FIXES.*?(</style>)', "`$1")
         }
         
         if ($content -match $pattern) {
             $newContent = [regex]::Replace($content, $pattern, {
                 param($m)
-                $m.Groups[1].Value + $responsiveCSS + $m.Groups[2].Value + $m.Groups[3].Value
+                $m.Groups[1].Value + "`r`n" + $responsiveCSS + "`r`n" + $m.Groups[2].Value + $m.Groups[3].Value
             })
             
             if ($newContent -ne $content) {
