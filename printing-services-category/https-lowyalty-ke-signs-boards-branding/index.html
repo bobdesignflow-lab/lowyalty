@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html lang="en-US" prefix="og: https://ogp.me/ns#">
 
 <!-- Mirrored from https://lowyaltybrandingline.com/printing-services-category/https-lowyalty-ke-signs-boards-branding/ by HTTrack Website Copier/3.x [XR&CO], Wed, 16 Sep 2026 09:06:38 GMT -->
@@ -1556,44 +1556,118 @@ html, body { overflow-x: hidden !important; max-width: 100% !important; }
 </style>
 
 <style id="topbar-center-override">
-/* Force all top bar items onto one centered line */
-.l-subheader.at_top {
-    overflow: hidden !important;
-    white-space: nowrap !important;
+/* Desktop Top Bar: Centered single line */
+@media (min-width: 1025px) {
+    .l-subheader.at_top {
+        overflow: hidden !important;
+        white-space: nowrap !important;
+    }
+    .l-subheader.at_top .l-subheader-h {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 0 18px !important;
+        width: 100% !important;
+    }
+    .l-subheader.at_top .l-subheader-cell.at_left,
+    .l-subheader.at_top .l-subheader-cell.at_right {
+        display: inline-flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-grow: 0 !important;
+        flex-shrink: 1 !important;
+        gap: 0 18px !important;
+    }
+    .l-subheader.at_top .l-subheader-cell.at_center {
+        display: none !important;
+    }
+    .l-subheader.at_top .w-text {
+        white-space: nowrap !important;
+        font-size: 13.5px !important;
+        flex-shrink: 0 !important;
+    }
+    .l-subheader.at_top .w-text-value {
+        white-space: nowrap !important;
+        font-size: 13.5px !important;
+    }
+    .l-subheader.at_top i.fas,
+    .l-subheader.at_top .w-text i {
+        font-size: 13px !important;
+    }
 }
-.l-subheader.at_top .l-subheader-h {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 0 18px !important;
-    width: 100% !important;
-}
-.l-subheader.at_top .l-subheader-cell.at_left,
-.l-subheader.at_top .l-subheader-cell.at_right {
-    display: inline-flex !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-grow: 0 !important;
-    flex-shrink: 1 !important;
-    gap: 0 18px !important;
-}
-.l-subheader.at_top .l-subheader-cell.at_center {
-    display: none !important;
-}
-.l-subheader.at_top .w-text {
-    white-space: nowrap !important;
-    font-size: 13.5px !important;
-    flex-shrink: 0 !important;
-}
-.l-subheader.at_top .w-text-value {
-    white-space: nowrap !important;
-    font-size: 13.5px !important;
-}
-.l-subheader.at_top i.fas,
-.l-subheader.at_top .w-text i {
-    font-size: 13px !important;
+
+/* Mobile & Tablet Top Bar: Stacked responsive layout displaying 2 locations, email, and phone numbers */
+@media (max-width: 1024px) {
+    .l-subheader.at_top {
+        padding: 8px 10px !important;
+        height: auto !important;
+        min-height: auto !important;
+        line-height: normal !important;
+        overflow: visible !important;
+        white-space: normal !important;
+        display: block !important;
+        background: var(--color-header-top-bg, #231f20) !important;
+    }
+    .l-subheader.at_top .l-subheader-h {
+        height: auto !important;
+        min-height: auto !important;
+        line-height: normal !important;
+        flex-direction: column !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        width: 100% !important;
+    }
+    .l-subheader.at_top .l-subheader-cell.at_left,
+    .l-subheader.at_top .l-subheader-cell.at_right {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .l-subheader.at_top .l-subheader-cell.at_center {
+        display: none !important;
+    }
+    .l-subheader.at_top .w-text {
+        white-space: normal !important;
+        font-size: 11.5px !important;
+        line-height: 1.35 !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        height: auto !important;
+        flex-shrink: 0 !important;
+    }
+    .l-subheader.at_top .w-text-h {
+        white-space: normal !important;
+        text-align: center !important;
+        justify-content: center !important;
+        height: auto !important;
+        line-height: 1.35 !important;
+        display: inline-flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 4px !important;
+    }
+    .l-subheader.at_top .w-text-value {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        word-break: break-word !important;
+        text-align: center !important;
+        font-size: 11.5px !important;
+    }
+    .l-subheader.at_top i.fas,
+    .l-subheader.at_top .w-text i {
+        font-size: 12px !important;
+    }
 }
 </style>
 <style id="whatsapp-float-style">
@@ -2493,7 +2567,7 @@ else{document.querySelector(".product_field input").value=productNames[selectedP
 		$us.responsiveBreakpoints = {"default":0,"laptops":1380,"tablets":1024,"mobiles":600};
 		$us.userFavoritePostIds = '';
 	</script>
-	<script id="us-header-settings">if ( window.$us === undefined ) window.$us = {};$us.headerSettings = {"default":{"options":{"custom_breakpoint":0,"breakpoint":"","orientation":"hor","sticky":false,"sticky_auto_hide":true,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"40px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"100px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":["text:7","text:5","text:6"],"top_center":[],"top_right":["text:3","text:8","text:2"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":[],"hwrapper:1":["image:1","search:1","cart:1"]}},"laptops":{"options":{"custom_breakpoint":0,"breakpoint":"1380px","orientation":"hor","sticky":false,"sticky_auto_hide":false,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"40px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"100px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":["text:7","text:5","text:6"],"top_center":[],"top_right":["text:3","text:2","text:8"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":[],"hwrapper:1":["image:1","search:1","cart:1"]}},"tablets":{"options":{"custom_breakpoint":0,"breakpoint":"1024px","orientation":"hor","sticky":false,"sticky_auto_hide":false,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"40px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"100px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":["text:7"],"top_center":[],"top_right":["text:3","text:2","text:8"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":["text:5","text:6"],"hwrapper:1":["image:1","search:1","cart:1"]}},"mobiles":{"options":{"custom_breakpoint":0,"breakpoint":"600px","orientation":"hor","sticky":false,"sticky_auto_hide":false,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"0px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"60px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":[],"top_center":[],"top_right":[],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":["text:3","text:2","text:7","text:5","text:6","text:8"],"hwrapper:1":["image:1","search:1","cart:1"]}},"header_id":"2056"};</script><script type="speculationrules">
+	<script id="us-header-settings">if ( window.$us === undefined ) window.$us = {};$us.headerSettings = {"default":{"options":{"custom_breakpoint":0,"breakpoint":"","orientation":"hor","sticky":false,"sticky_auto_hide":true,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"40px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"100px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":["text:7","text:5","text:6"],"top_center":[],"top_right":["text:3","text:8","text:2"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":[],"hwrapper:1":["image:1","search:1","cart:1"]}},"laptops":{"options":{"custom_breakpoint":0,"breakpoint":"1380px","orientation":"hor","sticky":false,"sticky_auto_hide":false,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"40px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"100px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":["text:7","text:5","text:6"],"top_center":[],"top_right":["text:3","text:2","text:8"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":[],"hwrapper:1":["image:1","search:1","cart:1"]}},"tablets":{"options":{"custom_breakpoint":0,"breakpoint":"1024px","orientation":"hor","sticky":false,"sticky_auto_hide":false,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"40px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"100px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":["text:7","text:5","text:6"],"top_center":[],"top_right":["text:3","text:8","text:2"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":[],"hwrapper:1":["image:1","search:1","cart:1"]}},"mobiles":{"options":{"custom_breakpoint":0,"breakpoint":"600px","orientation":"hor","sticky":false,"sticky_auto_hide":false,"scroll_breakpoint":"1px","transparent":0,"width":"300px","elm_align":"center","shadow":"thin","top_show":1,"top_height":"40px","top_sticky_height":"0px","top_fullwidth":0,"top_centering":0,"top_bg_color":"_header_top_bg","top_text_color":"_header_top_text","top_text_hover_color":"_header_top_text_hover","top_transparent_bg_color":"_header_top_transparent_bg","top_transparent_text_color":"_header_top_transparent_text","top_transparent_text_hover_color":"_header_top_transparent_text_hover","middle_height":"60px","middle_sticky_height":"0px","middle_fullwidth":0,"middle_centering":0,"elm_valign":"top","bg_img":"","bg_img_wrapper_start":"","bg_img_size":"cover","bg_img_repeat":"repeat","bg_img_position":"top left","bg_img_attachment":1,"bg_img_wrapper_end":"","middle_bg_color":"_header_middle_bg","middle_text_color":"_header_middle_text","middle_text_hover_color":"_header_middle_text_hover","middle_transparent_bg_color":"_header_transparent_bg","middle_transparent_text_color":"_header_transparent_text","middle_transparent_text_hover_color":"_header_transparent_text_hover","bottom_show":1,"bottom_height":"50px","bottom_sticky_height":"50px","bottom_fullwidth":0,"bottom_centering":0,"bottom_bg_color":"_header_middle_bg","bottom_text_color":"_header_middle_text","bottom_text_hover_color":"_header_middle_text_hover","bottom_transparent_bg_color":"_header_transparent_bg","bottom_transparent_text_color":"_header_transparent_text","bottom_transparent_text_hover_color":"_header_transparent_text_hover"},"layout":{"top_left":["text:7","text:5","text:6"],"top_center":[],"top_right":["text:3","text:8","text:2"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":[],"hwrapper:1":["image:1","search:1","cart:1"]}},"header_id":"2056"};</script><script type="speculationrules">
 {"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/Impreza/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
 	<script>

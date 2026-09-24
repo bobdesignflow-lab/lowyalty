@@ -12,18 +12,59 @@ $responsiveCSS = @"
            ======================================== */
 
         @media screen and (max-width: 1024px) {
+            .l-subheader.at_top {
+                padding: 8px 10px !important;
+                height: auto !important;
+                min-height: auto !important;
+                line-height: normal !important;
+                overflow: visible !important;
+                white-space: normal !important;
+                display: block !important;
+            }
             .l-subheader.at_top .l-subheader-h {
+                height: auto !important;
+                min-height: auto !important;
+                line-height: normal !important;
                 flex-direction: column !important;
-                align-items: flex-start !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 6px !important;
+                width: 100% !important;
             }
             .l-subheader.at_top .l-subheader-cell.at_left,
             .l-subheader.at_top .l-subheader-cell.at_right {
+                display: flex !important;
+                flex-direction: column !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 4px !important;
                 width: 100% !important;
-                justify-content: flex-start !important;
+                text-align: center !important;
             }
             .l-subheader.at_top .w-text {
                 white-space: normal !important;
                 font-size: 11px !important;
+                line-height: 1.35 !important;
+                text-align: center !important;
+                display: flex !important;
+                justify-content: center !important;
+                height: auto !important;
+            }
+            .l-subheader.at_top .w-text-h {
+                white-space: normal !important;
+                text-align: center !important;
+                justify-content: center !important;
+                height: auto !important;
+                line-height: 1.35 !important;
+            }
+            .l-subheader.at_top .w-text-value {
+                white-space: normal !important;
+                overflow: visible !important;
+                text-overflow: unset !important;
+                word-break: break-word !important;
+                text-align: center !important;
             }
             .l-header .w-nav-list.level_2 {
                 width: 240px !important;
@@ -53,13 +94,13 @@ $responsiveCSS = @"
                 gap: 8px !important;
                 height: auto !important;
                 flex-direction: column !important;
-                align-items: flex-start !important;
+                align-items: center !important;
             }
             .l-subheader.at_top .l-subheader-cell.at_left,
             .l-subheader.at_top .l-subheader-cell.at_right {
                 display: flex !important;
                 flex-direction: column !important;
-                align-items: flex-start !important;
+                align-items: center !important;
                 gap: 4px !important;
                 width: 100% !important;
             }
@@ -264,51 +305,60 @@ $responsiveCSS = @"
         }
 "@
 
-$rootDir = "c:\My Web Sites\Lowyalty Website"
+$rootDir = "c:\My Web Sites\Lowyalty\Lowyalty Website"
 $countFixed = 0
 $countSkipped = 0
 $countFailed = 0
 $fixedFiles = @()
 $failedFiles = @()
 
-# Pattern to match: .custom-logo-carousel img { ...margin: 0 auto !important; } [whitespace] </style>
-# Regex matches the carousel rule block with any whitespace and any indentation before </style>
+$tPattern = '"tablets"\s*:\s*\{("options"\s*:\s*\{.*?\})\s*,\s*"layout"\s*:\s*\{.*?\}\}'
+$mPattern = '"mobiles"\s*:\s*\{("options"\s*:\s*\{.*?\})\s*,\s*"layout"\s*:\s*\{.*?\}\}'
+$layoutFixed = '{"top_left":["text:7","text:5","text:6"],"top_center":[],"top_right":["text:3","text:8","text:2"],"middle_left":[],"middle_center":["hwrapper:1"],"middle_right":[],"bottom_left":["menu:1"],"bottom_center":[],"bottom_right":[],"hidden":[],"hwrapper:1":["image:1","search:1","cart:1"]}'
 $pattern = '(?s)(\.custom-logo-carousel\s+img\s*\{[^}]*margin:\s*0\s*auto\s*!important\s*;[^}]*\})(\s*)(</style>)'
 
 Get-ChildItem -Path $rootDir -Filter "*.html" -Recurse -File | ForEach-Object {
     $file = $_.FullName
-    
-    # Skip wp-includes, wp-admin, wp-content (theme/plugin files), cdn-cgi
+
     if ($file -match '\\(wp-includes|wp-admin|wp-content|cdn-cgi|hts-cache)\\') {
         $script:countSkipped++
         return
     }
-    
+
     try {
         $content = [System.IO.File]::ReadAllText($file)
-        
-        # If the file already has the responsive fixes, we remove the entire block from '/* ==========================================================================' to '</style>' and append our new one before </style>
+        $modified = $false
+
+        # Update tablets & mobiles layout in $us.headerSettings
+        if ([regex]::IsMatch($content, $tPattern)) {
+            $newContent = [regex]::Replace($content, $tPattern, { param($m) return '"tablets":{' + $m.Groups[1].Value + ',"layout":' + $layoutFixed + '}' })
+            if ($newContent -ne $content) { $content = $newContent; $modified = $true }
+        }
+        if ([regex]::IsMatch($content, $mPattern)) {
+            $newContent = [regex]::Replace($content, $mPattern, { param($m) return '"mobiles":{' + $m.Groups[1].Value + ',"layout":' + $layoutFixed + '}' })
+            if ($newContent -ne $content) { $content = $newContent; $modified = $true }
+        }
+
+        # Update responsive CSS block
         if ($content -match '(?s)/\* ==========================================================================\s*COMPREHENSIVE MOBILE RESPONSIVE FIXES.*?(</style>)') {
             $content = [regex]::Replace($content, '(?s)/\* ==========================================================================\s*COMPREHENSIVE MOBILE RESPONSIVE FIXES.*?(</style>)', "`$1")
         }
-        
+
         if ($content -match $pattern) {
             $newContent = [regex]::Replace($content, $pattern, {
                 param($m)
                 $m.Groups[1].Value + "`r`n" + $responsiveCSS + "`r`n" + $m.Groups[2].Value + $m.Groups[3].Value
             })
-            
-            if ($newContent -ne $content) {
-                [System.IO.File]::WriteAllText($file, $newContent)
-                $script:countFixed++
-                $script:fixedFiles += $file
-                Write-Host "FIXED: $file" -ForegroundColor Green
-            } else {
-                $script:countSkipped++
-            }
+            if ($newContent -ne $content) { $content = $newContent; $modified = $true }
+        }
+
+        if ($modified) {
+            [System.IO.File]::WriteAllText($file, $content, [System.Text.Encoding]::UTF8)
+            $script:countFixed++
+            $script:fixedFiles += $file
+            Write-Host "FIXED: $file" -ForegroundColor Green
         } else {
             $script:countSkipped++
-            Write-Host "SKIP (no match): $file" -ForegroundColor DarkGray
         }
     } catch {
         $script:countFailed++
@@ -317,19 +367,4 @@ Get-ChildItem -Path $rootDir -Filter "*.html" -Recurse -File | ForEach-Object {
     }
 }
 
-Write-Host ""
-Write-Host "========================================="
-Write-Host "Responsive Fixes Application Complete"
-Write-Host "========================================="
-Write-Host "Files FIXED:   $countFixed" -ForegroundColor Green
-Write-Host "Files SKIPPED: $countSkipped" -ForegroundColor Cyan
-Write-Host "Files FAILED:  $countFailed" -ForegroundColor Red
-Write-Host ""
-if ($fixedFiles.Count -gt 0) {
-    Write-Host "Fixed files:"
-    $fixedFiles | ForEach-Object { Write-Host "  - $_" }
-}
-if ($failedFiles.Count -gt 0) {
-    Write-Host "Failed files:"
-    $failedFiles | ForEach-Object { Write-Host "  - $_" }
-}
+Write-Host "Done! Fixed: $countFixed, Skipped: $countSkipped, Failed: $countFailed"
