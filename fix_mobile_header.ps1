@@ -7,6 +7,8 @@ $newTopbarCSS = @"
     .l-subheader.at_top {
         overflow: hidden !important;
         white-space: nowrap !important;
+        background: #231f20 !important;
+        color: #ffffff !important;
     }
     .l-subheader.at_top .l-subheader-h {
         display: flex !important;
@@ -33,18 +35,24 @@ $newTopbarCSS = @"
         white-space: nowrap !important;
         font-size: 13.5px !important;
         flex-shrink: 0 !important;
+        color: #ffffff !important;
     }
     .l-subheader.at_top .w-text-value {
         white-space: nowrap !important;
         font-size: 13.5px !important;
+        color: #ffffff !important;
+    }
+    .l-subheader.at_top a {
+        color: #ffffff !important;
     }
     .l-subheader.at_top i.fas,
     .l-subheader.at_top .w-text i {
         font-size: 13px !important;
+        color: #ed2127 !important;
     }
 }
 
-/* Mobile & Tablet Top Bar: Stacked responsive layout displaying 2 locations, email, and phone numbers */
+/* Mobile & Tablet Top Bar: Stacked responsive layout displaying 2 locations, email, and phone numbers in crisp white text */
 @media (max-width: 1024px) {
     .l-subheader.at_top {
         padding: 8px 10px !important;
@@ -54,12 +62,14 @@ $newTopbarCSS = @"
         overflow: visible !important;
         white-space: normal !important;
         display: block !important;
-        background: var(--color-header-top-bg, #231f20) !important;
+        background: #231f20 !important;
+        color: #ffffff !important;
     }
     .l-subheader.at_top .l-subheader-h {
         height: auto !important;
         min-height: auto !important;
         line-height: normal !important;
+        display: flex !important;
         flex-direction: column !important;
         flex-wrap: wrap !important;
         align-items: center !important;
@@ -90,6 +100,9 @@ $newTopbarCSS = @"
         justify-content: center !important;
         height: auto !important;
         flex-shrink: 0 !important;
+        color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     .l-subheader.at_top .w-text-h {
         white-space: normal !important;
@@ -101,6 +114,7 @@ $newTopbarCSS = @"
         flex-wrap: wrap !important;
         align-items: center !important;
         gap: 4px !important;
+        color: #ffffff !important;
     }
     .l-subheader.at_top .w-text-value {
         white-space: normal !important;
@@ -109,10 +123,19 @@ $newTopbarCSS = @"
         word-break: break-word !important;
         text-align: center !important;
         font-size: 11.5px !important;
+        color: #ffffff !important;
+    }
+    .l-subheader.at_top a {
+        color: #ffffff !important;
+        text-decoration: none !important;
+    }
+    .l-subheader.at_top a:hover {
+        color: #ed2127 !important;
     }
     .l-subheader.at_top i.fas,
     .l-subheader.at_top .w-text i {
         font-size: 12px !important;
+        color: #ed2127 !important;
     }
 }
 </style>
