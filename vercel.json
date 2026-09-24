@@ -1,27 +1,52 @@
 {
   "redirects": [
     {
-      "source": "/home(?:\\.html)?",
+      "source": "/home",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/about(?:/index\\.html)?",
+      "source": "/home.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/about",
       "destination": "/contact/index.html",
       "permanent": true
     },
     {
-      "source": "/printing-services(?:/index\\.html)?",
+      "source": "/about/index.html",
+      "destination": "/contact/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/printing-services",
       "destination": "/",
       "permanent": true
     },
     {
-      "source": "/printing-services-category/https-lowyalty-ke-banners-displays(?:/index\\.html)?",
+      "source": "/printing-services/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/printing-services-category/https-lowyalty-ke-banners-displays",
       "destination": "/printing-services-category/https-lowyalty-ke-signs-boards-branding/index.html",
       "permanent": true
     },
     {
-      "source": "/printing-services-category/https-lowyalty-ke-vehicle-fleet-branding(?:/index\\.html)?",
+      "source": "/printing-services-category/https-lowyalty-ke-banners-displays/index.html",
+      "destination": "/printing-services-category/https-lowyalty-ke-signs-boards-branding/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/printing-services-category/https-lowyalty-ke-vehicle-fleet-branding",
+      "destination": "/printing-services-category/https-lowyalty-ke-motor-vehicle-branding-office-branding/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/printing-services-category/https-lowyalty-ke-vehicle-fleet-branding/index.html",
       "destination": "/printing-services-category/https-lowyalty-ke-motor-vehicle-branding-office-branding/index.html",
       "permanent": true
     }
